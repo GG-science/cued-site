@@ -14,7 +14,7 @@
     --paper: #f7f5f1;
     --paper-deep: #efece6;
     --line: #e0dcd4;
-    --accent: #d64533; /* shifts with the moment */
+    --accent: #c2452f; /* shifts with the moment */
     --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
@@ -32,7 +32,7 @@
   .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
 
   /* ---------- hero ---------- */
-  header { padding: 72px 0 64px; }
+  header { padding: 72px 0 56px; }
   .eyebrow {
     font-family: var(--mono);
     font-size: 12px;
@@ -105,9 +105,7 @@
     color: var(--ink-soft);
     display: flex; align-items: center; gap: 12px;
   }
-  .pack {
-    display: flex; gap: 4px; align-items: flex-end; height: 22px;
-  }
+  .pack { display: flex; gap: 4px; align-items: flex-end; height: 22px; }
   .pack span {
     width: 9px; border-radius: 2px;
     background: var(--accent);
@@ -119,8 +117,30 @@
     html { scroll-behavior: auto; }
   }
 
+  /* four-beat strip */
+  .beats {
+    margin-top: 44px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+    display: flex; flex-wrap: wrap; gap: 8px 0;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .beats span { display: flex; align-items: center; }
+  .beats span + span::before {
+    content: "·";
+    margin: 0 14px;
+    color: var(--accent);
+    transition: color 1.2s ease;
+  }
+
   /* ---------- sections ---------- */
-  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  section { padding: 56px 0 8px; }
+  section.ruled { border-top: 1px solid var(--line); padding-bottom: 56px; }
   h2 {
     font-size: 24px;
     letter-spacing: -0.015em;
@@ -130,11 +150,44 @@
   }
   p { margin: 0 0 16px; max-width: 62ch; }
   .muted { color: var(--ink-soft); }
+  .vibe {
+    font-family: var(--mono);
+    font-size: 0.82em;
+    background: var(--paper-deep);
+    border-radius: 6px;
+    padding: 1px 7px;
+    white-space: nowrap;
+  }
 
-  /* what-you-get cards */
+  /* the journey acts */
+  .act { padding: 44px 0; }
+  .act + .act { border-top: 1px solid var(--line); }
+  .act-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    transition: color 1.2s ease;
+    margin-bottom: 10px;
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .act-eyebrow .n { color: var(--ink-soft); }
+  .act h3 {
+    font-size: clamp(21px, 3.4vw, 27px);
+    line-height: 1.25;
+    letter-spacing: -0.018em;
+    font-weight: 740;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .act p { font-size: 16.5px; }
+  .act p:last-child { margin-bottom: 0; }
+
+  /* feature grid */
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 14px;
     margin-top: 28px;
   }
@@ -144,36 +197,8 @@
     border-radius: 12px;
     padding: 20px;
   }
-  .card h3 { font-size: 16px; margin: 0 0 8px; font-weight: 680; }
-  .card p { font-size: 14.5px; color: var(--ink-soft); margin: 0; }
-
-  /* journey */
-  .steps { display: flex; flex-direction: column; gap: 0; margin-top: 28px; }
-  .step {
-    display: grid;
-    grid-template-columns: 44px 1fr;
-    gap: 18px;
-    padding: 20px 0;
-  }
-  .step + .step { border-top: 1px solid var(--line); }
-  .step-num {
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
-    transition: color 1.2s ease;
-    padding-top: 3px;
-  }
-  .step h3 { font-size: 16.5px; margin: 0 0 6px; font-weight: 680; }
-  .step p { font-size: 15px; color: var(--ink-soft); margin: 0; max-width: 58ch; }
-  .step .vibe {
-    font-family: var(--mono);
-    font-size: 13.5px;
-    background: var(--paper-deep);
-    border-radius: 6px;
-    padding: 1px 7px;
-    white-space: nowrap;
-  }
+  .card h3 { font-size: 15.5px; margin: 0 0 8px; font-weight: 680; }
+  .card p { font-size: 14px; color: var(--ink-soft); margin: 0; }
 
   /* beta CTA */
   .beta {
@@ -220,6 +245,7 @@
     padding: 36px 0 56px;
     font-size: 13.5px;
     color: var(--ink-soft);
+    margin-top: 56px;
   }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
   footer a { color: var(--ink-soft); }
@@ -229,7 +255,7 @@
   <div class="wrap">
     <div class="eyebrow"><span class="dot"></span> Cued Music · private beta</div>
     <h1>The whole world of music, tuned to your taste — for <em id="h1-moment">every moment</em>.</h1>
-    <p class="lede">Cued is a music guide for Apple&nbsp;Music. Tell it the moment, and it answers with five songs picked for you — favorites you forgot you loved, next to new music that actually fits.</p>
+    <p class="lede">Cued is a music guide for Apple&nbsp;Music. Tell it the moment — a morning emo run, cooking jazz, the gym — and it answers five songs at a time: favorites you forgot you loved, next to music you've never met.</p>
 
     <div class="demo" aria-label="Example: typing a moment into Cued">
       <div class="demo-label">Say the moment</div>
@@ -241,6 +267,10 @@
         five songs, from <strong>your</strong> taste
       </div>
     </div>
+
+    <div class="beats" aria-label="Define your taste, cue the moment, explore the world, no repeats">
+      <span>Define your taste</span><span>Cue the moment</span><span>Explore the world</span><span>No repeats</span>
+    </div>
   </div>
 </header>
 
@@ -248,69 +278,76 @@
   <div class="wrap">
     <h2>You liked five hundred albums. You hear the same forty songs.</h2>
     <p>Streaming apps lean on what you played recently, so last month's habits pick next month's music. The library you spent years building goes quiet, and discovery drifts toward whatever everyone else is playing.</p>
-    <p>Cued starts from everything you've ever loved and lets the moment decide what surfaces.</p>
+    <p>Cued starts from everything you've ever loved and lets the moment decide what surfaces. Here's the whole journey.</p>
+  </div>
+</section>
 
+<section class="ruled">
+  <div class="wrap">
+
+    <div class="act">
+      <div class="act-eyebrow"><span class="n">I</span> Define your taste</div>
+      <h3>Your library is the map.</h3>
+      <p>Connect Apple&nbsp;Music and everything you've already liked becomes the raw material — years of your own choices, not a stranger's charts. Cued reads what you love, and just as carefully, what you've buried: the record you played to death in 2019 and haven't touched since. That's where it starts digging.</p>
+    </div>
+
+    <div class="act">
+      <div class="act-eyebrow"><span class="n">II</span> Cue the moment</div>
+      <h3>Name any occasion. It becomes a place you can return to.</h3>
+      <p>Type it the way you'd say it out loud: <span class="vibe">morning emo run</span> <span class="vibe">cooking jazz</span> <span class="vibe">sunday reset</span> <span class="vibe">punjabi gym</span>. Cued answers with a pack — five songs that fit the moment <em>and</em> you. Presets when you don't feel like typing. Made-up words welcome; it works out what you meant with you, a pack at a time.</p>
+      <p>Every vibe you name is saved. Your <span class="vibe">gym</span> tomorrow knows everything your <span class="vibe">gym</span> learned today.</p>
+    </div>
+
+    <div class="act">
+      <div class="act-eyebrow"><span class="n">III</span> Explore the world</div>
+      <h3>Radio from any song. Discovery that actually fits.</h3>
+      <p>Caught on one song you can't let go of? Start a radio from it. The song plays first, then Cued follows the thread — same blood, tuned by your taste, digging past the obvious hits into the deep cuts. Mid-pack, ask for more like this and it leans in.</p>
+      <p>New artists show up because they sit next to what you already love. Keep what lands, skip what doesn't — every choice sharpens the next five songs.</p>
+    </div>
+
+    <div class="act">
+      <div class="act-eyebrow"><span class="n">IV</span> No repeats</div>
+      <h3>It remembers what it played you. So it never loops.</h3>
+      <p>Cued keeps track of every song it has served you — across packs, across days. Tomorrow's gym doesn't replay yesterday's. And when you return to a vibe, it doesn't start over; it picks up where you left off, a little sharper than you left it.</p>
+      <p>Your <span class="vibe">gym</span> ends up sounding like nobody else's, because it was learned from nobody else.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="ruled">
+  <div class="wrap">
+    <h2>Everything in the box</h2>
     <div class="cards">
       <div class="card">
+        <h3>A vibe for every occasion</h3>
+        <p>Name it and it's yours — from <span class="vibe">morning emo run</span> to <span class="vibe">cooking jazz</span>. Saved, remembered, sharpened.</p>
+      </div>
+      <div class="card">
+        <h3>Song radio</h3>
+        <p>Any track becomes a station — seeded by the song, tuned by your taste.</p>
+      </div>
+      <div class="card">
         <h3>Buried favorites, back</h3>
-        <p>The album you wore out in 2019 shows up at the right moment — not by shuffle luck.</p>
+        <p>The albums you loved and lost resurface at the right moment — not by shuffle luck.</p>
       </div>
       <div class="card">
-        <h3>Discovery that fits</h3>
-        <p>New artists and deep cuts chosen because they sit next to your taste, not because they're charting.</p>
+        <h3>Taste-true discovery</h3>
+        <p>New artists and deep cuts chosen because they fit you, not because they're charting.</p>
       </div>
       <div class="card">
-        <h3>Your words, your meaning</h3>
-        <p>Your “gym” isn't anyone else's. Keep and skip a few songs and the next five are already closer. Come back tomorrow — it remembers.</p>
+        <h3>No repeats</h3>
+        <p>Packs never loop. Cued remembers what it's played you, across sessions.</p>
+      </div>
+      <div class="card">
+        <h3>Real full tracks</h3>
+        <p>Plays through your own Apple&nbsp;Music — full songs, lock-screen controls, streams that count.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <h2>How a session goes</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div>
-          <h3>Get the beta</h3>
-          <p>Cued is on TestFlight. You'll need an iPhone and an active Apple&nbsp;Music subscription.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div>
-          <h3>Connect your library</h3>
-          <p>Sign in with Apple and link Apple&nbsp;Music. The albums and songs you've liked become the starting map of your taste.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div>
-          <h3>Say the moment</h3>
-          <p>Type anything — <span class="vibe">gym</span> <span class="vibe">sunday morning</span> <span class="vibe">backyard hang</span> — or tap a preset. Made-up words welcome; it figures them out with you.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div>
-          <h3>Play the pack</h3>
-          <p>Five songs, full tracks, played through Apple&nbsp;Music itself. Keep what lands, skip what doesn't.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">05</div>
-        <div>
-          <h3>Watch it sharpen</h3>
-          <p>Each pack learns from the last one. Each time you return, it starts where you left off instead of starting over.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
+<section class="ruled">
   <div class="wrap">
     <div class="beta">
       <h2>Join the beta</h2>
@@ -336,12 +373,12 @@
 <script>
   (function () {
     var moments = [
-      { word: "gym",            accent: "#c2452f" },
-      { word: "sunday morning", accent: "#b07a24" },
-      { word: "late drive",     accent: "#41589c" },
-      { word: "cooking dinner", accent: "#b85c2e" },
-      { word: "deep focus",     accent: "#2f7263" },
-      { word: "backyard hang",  accent: "#5a7d33" }
+      { word: "gym",             accent: "#c2452f" },
+      { word: "morning emo run", accent: "#8e4a5e" },
+      { word: "cooking jazz",    accent: "#b07a24" },
+      { word: "late drive",      accent: "#41589c" },
+      { word: "sunday reset",    accent: "#2f7263" },
+      { word: "backyard hang",   accent: "#5a7d33" }
     ];
     var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
@@ -351,13 +388,13 @@
     var root = document.documentElement;
     var i = 0;
 
-    function typeWord(word, done) {
+    function typeWord(word) {
       var n = 0;
       wordEl.textContent = "";
       var t = setInterval(function () {
         n++;
         wordEl.textContent = word.slice(0, n);
-        if (n >= word.length) { clearInterval(t); done && done(); }
+        if (n >= word.length) clearInterval(t);
       }, 70);
     }
 
