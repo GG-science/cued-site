@@ -71,7 +71,7 @@
     max-width: 480px;
     box-shadow: 0 1px 2px rgba(29,27,24,0.04), 0 8px 24px rgba(29,27,24,0.05);
   }
-  .demo-label {
+  .demo-label, .viz-label {
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.12em;
@@ -111,10 +111,6 @@
     background: var(--accent);
     opacity: 0.85;
     transition: background 1.2s ease, height 1.2s ease;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .demo-line .caret { animation: none; }
-    html { scroll-behavior: auto; }
   }
 
   /* four-beat strip */
@@ -159,7 +155,41 @@
     white-space: nowrap;
   }
 
-  /* the journey acts */
+  /* ---------- the 500-albums dots ---------- */
+  .dots-card { max-width: 560px; margin: 26px 0 20px; }
+  .dots {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    gap: 6px;
+    max-width: 520px;
+  }
+  .dots b {
+    display: block;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--line);
+  }
+  .dots b.hot {
+    background: var(--accent);
+    transition: background 1.2s ease;
+    animation: hotpulse 2.6s ease-in-out infinite;
+  }
+  @keyframes hotpulse { 50% { opacity: 0.55; } }
+  .dots-legend {
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: center;
+  }
+  .dots-legend .k {
+    display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+    margin-right: 7px; vertical-align: -1px;
+    background: var(--line);
+  }
+  .dots-legend .k.hot { background: var(--accent); transition: background 1.2s ease; }
+
+  /* ---------- journey acts ---------- */
   .act { padding: 44px 0; }
   .act + .act { border-top: 1px solid var(--line); }
   .act-eyebrow {
@@ -184,21 +214,105 @@
   .act p { font-size: 16.5px; }
   .act p:last-child { margin-bottom: 0; }
 
-  /* feature grid */
-  .cards {
+  /* the library graph */
+  .graph-card {
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 20px 12px;
+    margin-top: 24px;
+    box-shadow: 0 1px 2px rgba(29,27,24,0.04), 0 8px 24px rgba(29,27,24,0.05);
+  }
+  .graph-card svg { width: 100%; height: auto; display: block; }
+  .graph .nd { fill: var(--accent); transition: fill 1.2s ease; }
+  .graph .nd-o { fill: #fff; stroke: var(--accent); stroke-width: 1.6; transition: stroke 1.2s ease; }
+  .graph .ed { stroke: var(--ink-soft); stroke-opacity: 0.3; stroke-width: 1.3; }
+  .graph .ed-f { stroke: var(--accent); stroke-opacity: 0.5; stroke-width: 1.3; stroke-dasharray: 3 5; transition: stroke 1.2s ease; }
+  .graph .nm { font-family: var(--mono); font-size: 12.5px; font-weight: 600; fill: var(--ink); }
+  .graph .sub { font-family: var(--mono); font-size: 10.5px; fill: var(--ink-soft); }
+  .graph .fr { font-family: var(--mono); font-size: 11.5px; font-style: italic; fill: var(--ink-soft); }
+  .graph .s1 { animation: st1 10s ease infinite; }
+  .graph .s2 { animation: st2 10s ease infinite; }
+  .graph .s3 { animation: st3 10s ease infinite; }
+  .graph .s4 { animation: st4 10s ease infinite; }
+  .graph .s5 { animation: st5 10s ease infinite; }
+  .graph .s6 { animation: st6 10s ease infinite; }
+  @keyframes st1 { 0%, 2%  { opacity: 0; } 6%,  92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+  @keyframes st2 { 0%, 9%  { opacity: 0; } 14%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+  @keyframes st3 { 0%, 13% { opacity: 0; } 18%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+  @keyframes st4 { 0%, 22% { opacity: 0; } 28%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+  @keyframes st5 { 0%, 27% { opacity: 0; } 33%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+  @keyframes st6 { 0%, 40% { opacity: 0; } 47%, 92% { opacity: 1; } 97%, 100% { opacity: 0; } }
+  .graph-card .viz-label { margin: 10px 0 0; }
+
+  /* radio ripple */
+  .radio-row {
+    display: flex; align-items: center; gap: 18px;
+    margin-top: 22px;
+  }
+  .ripple { position: relative; width: 58px; height: 58px; flex: none; }
+  .ripple .core {
+    position: absolute; left: 50%; top: 50%;
+    width: 11px; height: 11px; margin: -5.5px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: background 1.2s ease;
+  }
+  .ripple i {
+    position: absolute; left: 50%; top: 50%;
+    width: 11px; height: 11px; margin: -5.5px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    transition: border-color 1.2s ease;
+    animation: rip 3.2s linear infinite;
+    opacity: 0;
+  }
+  .ripple i:nth-child(3) { animation-delay: 1.06s; }
+  .ripple i:nth-child(4) { animation-delay: 2.13s; }
+  @keyframes rip {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    100% { transform: scale(5.2); opacity: 0; }
+  }
+  .radio-row .viz-label { margin: 0; }
+
+  /* no-repeats: yesterday vs today */
+  .replay {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px;
+    margin-top: 22px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .replay .arrow { color: var(--accent); transition: color 1.2s ease; }
+
+  /* ---------- feature tiles ---------- */
+  .tiles {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 14px;
     margin-top: 28px;
   }
-  .card {
+  .tile {
     background: #fff;
     border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 14px;
+    padding: 22px 20px 20px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
-  .card h3 { font-size: 15.5px; margin: 0 0 8px; font-weight: 680; }
-  .card p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+  .tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(29,27,24,0.05), 0 12px 28px rgba(29,27,24,0.07);
+  }
+  .tile .glyph {
+    color: var(--accent);
+    transition: color 1.2s ease;
+    margin-bottom: 12px;
+    display: block; height: 24px;
+  }
+  .tile h3 { font-size: 15.5px; margin: 0 0 8px; font-weight: 680; }
+  .tile p { font-size: 14px; color: var(--ink-soft); margin: 0; }
 
   /* beta CTA */
   .beta {
@@ -249,6 +363,14 @@
   }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
   footer a { color: var(--ink-soft); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .demo-line .caret { animation: none; }
+    .dots b.hot { animation: none; }
+    .ripple i { animation: none; opacity: 0.35; transform: scale(2.4); }
+    .graph .s1, .graph .s2, .graph .s3, .graph .s4, .graph .s5, .graph .s6 { animation: none; opacity: 1; }
+  }
 </style>
 
 <header>
@@ -277,8 +399,15 @@
 <section>
   <div class="wrap">
     <h2>You liked five hundred albums. You hear the same forty songs.</h2>
-    <p>Streaming apps lean on what you played recently, so last month's habits pick next month's music. The library you spent years building goes quiet, and discovery drifts toward whatever everyone else is playing.</p>
-    <p>Cued starts from everything you've ever loved and lets the moment decide what surfaces. Here's the whole journey.</p>
+    <p>Streaming leans on what you played recently — so last month's habits pick next month's music, and the library you spent years building goes quiet.</p>
+    <div class="dots-card" role="img" aria-label="A field of dots representing your library; only a small cluster is lit, representing the few songs streaming actually plays.">
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <div class="dots-legend" aria-hidden="true">
+        <span><span class="k"></span>the library you built</span>
+        <span><span class="k hot"></span>what shuffle actually plays</span>
+      </div>
+    </div>
+    <p>Cued starts from everything you've ever loved, and lets the moment decide what surfaces.</p>
   </div>
 </section>
 
@@ -287,29 +416,78 @@
 
     <div class="act">
       <div class="act-eyebrow"><span class="n">I</span> Define your taste</div>
-      <h3>Your library is the map.</h3>
-      <p>Connect Apple&nbsp;Music and everything you've already liked becomes the raw material — years of your own choices, not a stranger's charts. Cued reads what you love, and just as carefully, what you've buried: the record you played to death in 2019 and haven't touched since. That's where it starts digging.</p>
+      <h3>Your library is the map. It expands like one.</h3>
+      <p>Connect Apple&nbsp;Music and years of your own choices become the raw material — what you love, and what you've buried. One record you played to death isn't a memory; it's a door.</p>
+      <div class="graph-card">
+        <svg class="graph" viewBox="0 0 640 320" role="img" aria-label="A graph expanding outward: an album you loved, The Strokes in 2003, connects to the early-2000s New York indie scene, which connects to Interpol, Yeah Yeah Yeahs, and LCD Soundsystem, with dashed lines continuing toward deep cuts you've never met.">
+        <g class="s2"><line class="ed" x1="68" y1="160" x2="232" y2="160"/></g>
+        <g class="s4">
+          <line class="ed" x1="247" y1="155" x2="413" y2="85"/>
+          <line class="ed" x1="248" y1="160" x2="437" y2="160"/>
+          <line class="ed" x1="247" y1="165" x2="413" y2="235"/>
+        </g>
+        <g class="s6">
+          <line class="ed-f" x1="428" y1="77" x2="602" y2="52"/>
+          <line class="ed-f" x1="453" y1="160" x2="614" y2="160"/>
+          <line class="ed-f" x1="428" y1="243" x2="602" y2="268"/>
+          <text class="fr" x="628" y="302" text-anchor="end">…deep cuts you've never met</text>
+        </g>
+        <g class="s1">
+          <circle class="nd" cx="60" cy="160" r="7"/>
+          <text class="sub" x="34" y="118">you loved · 2003</text>
+          <text class="nm" x="34" y="137">The Strokes</text>
+        </g>
+        <g class="s3">
+          <circle class="nd-o" cx="240" cy="160" r="7"/>
+          <text class="sub" x="178" y="118">the scene it opens</text>
+          <text class="nm" x="178" y="137">2000s NYC indie</text>
+        </g>
+        <g class="s5">
+          <circle class="nd-o" cx="420" cy="80" r="6"/>
+          <text class="nm" x="436" y="84">Interpol</text>
+          <circle class="nd-o" cx="445" cy="160" r="6"/>
+          <text class="nm" x="461" y="145">Yeah Yeah Yeahs</text>
+          <circle class="nd-o" cx="420" cy="240" r="6"/>
+          <text class="nm" x="436" y="244">LCD Soundsystem</text>
+        </g>
+        </svg>
+        <div class="viz-label">one love → the scene → songs you've never met</div>
+      </div>
     </div>
 
     <div class="act">
       <div class="act-eyebrow"><span class="n">II</span> Cue the moment</div>
       <h3>Name any occasion. It becomes a place you can return to.</h3>
-      <p>Type it the way you'd say it out loud: <span class="vibe">morning emo run</span> <span class="vibe">cooking jazz</span> <span class="vibe">sunday reset</span> <span class="vibe">punjabi gym</span>. Cued answers with a pack — five songs that fit the moment <em>and</em> you. Presets when you don't feel like typing. Made-up words welcome; it works out what you meant with you, a pack at a time.</p>
-      <p>Every vibe you name is saved. Your <span class="vibe">gym</span> tomorrow knows everything your <span class="vibe">gym</span> learned today.</p>
+      <p>Type it the way you'd say it: <span class="vibe">morning emo run</span> <span class="vibe">cooking jazz</span> <span class="vibe">punjabi gym</span>. Five songs that fit the moment <em>and</em> you. Every vibe is saved — your <span class="vibe">gym</span> tomorrow knows everything your <span class="vibe">gym</span> learned today.</p>
     </div>
 
     <div class="act">
       <div class="act-eyebrow"><span class="n">III</span> Explore the world</div>
       <h3>Radio from any song. Discovery that actually fits.</h3>
-      <p>Caught on one song you can't let go of? Start a radio from it. The song plays first, then Cued follows the thread — same blood, tuned by your taste, digging past the obvious hits into the deep cuts. Mid-pack, ask for more like this and it leans in.</p>
-      <p>New artists show up because they sit next to what you already love. Keep what lands, skip what doesn't — every choice sharpens the next five songs.</p>
+      <p>Start a station from the one song you can't let go of. It plays first, then Cued follows the thread — past the obvious hits, into deep cuts, tuned by your taste. Keep what lands, skip what doesn't: every choice sharpens the next five.</p>
+      <div class="radio-row" aria-hidden="true">
+        <div class="ripple"><span class="core"></span><i></i><i></i><i></i></div>
+        <div class="viz-label">one song → a station, tuned to you</div>
+      </div>
     </div>
 
     <div class="act">
       <div class="act-eyebrow"><span class="n">IV</span> No repeats</div>
       <h3>It remembers what it played you. So it never loops.</h3>
-      <p>Cued keeps track of every song it has served you — across packs, across days. Tomorrow's gym doesn't replay yesterday's. And when you return to a vibe, it doesn't start over; it picks up where you left off, a little sharper than you left it.</p>
-      <p>Your <span class="vibe">gym</span> ends up sounding like nobody else's, because it was learned from nobody else.</p>
+      <p>Every song served is remembered — across packs, across days. Come back to a vibe and it picks up where you left off, a little sharper than you left it.</p>
+      <div class="replay" aria-hidden="true">
+        <span>yesterday</span>
+        <div class="pack">
+          <span style="height:14px"></span><span style="height:20px"></span><span style="height:11px"></span><span style="height:17px"></span><span style="height:22px"></span>
+        </div>
+        <span class="arrow">→</span>
+        <span>today</span>
+        <div class="pack">
+          <span style="height:21px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:9px"></span><span style="height:15px"></span>
+        </div>
+        <span class="arrow">→</span>
+        <span>never the same five</span>
+      </div>
     </div>
 
   </div>
@@ -318,28 +496,34 @@
 <section class="ruled">
   <div class="wrap">
     <h2>Everything in the box</h2>
-    <div class="cards">
-      <div class="card">
+    <div class="tiles">
+      <div class="tile">
+        <span class="glyph" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 2.8 12V5a2 2 0 0 1 2-2h7a2 2 0 0 1 1.4.6l7.4 7.4a2 2 0 0 1 0 2.4Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg></span>
         <h3>A vibe for every occasion</h3>
         <p>Name it and it's yours — from <span class="vibe">morning emo run</span> to <span class="vibe">cooking jazz</span>. Saved, remembered, sharpened.</p>
       </div>
-      <div class="card">
+      <div class="tile">
+        <span class="glyph" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/><path d="M8.6 8.6a4.8 4.8 0 0 0 0 6.8M15.4 8.6a4.8 4.8 0 0 1 0 6.8M6 6a8.5 8.5 0 0 0 0 12M18 6a8.5 8.5 0 0 1 0 12"/></svg></span>
         <h3>Song radio</h3>
         <p>Any track becomes a station — seeded by the song, tuned by your taste.</p>
       </div>
-      <div class="card">
+      <div class="tile">
+        <span class="glyph" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6M2.5 13h7l1 2h3l1-2h7"/><path d="M12 3v7M8.8 6.2 12 3l3.2 3.2"/></svg></span>
         <h3>Buried favorites, back</h3>
         <p>The albums you loved and lost resurface at the right moment — not by shuffle luck.</p>
       </div>
-      <div class="card">
+      <div class="tile">
+        <span class="glyph" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.2 8.8 13.4 13.4 8.8 15.2l1.8-4.6z"/></svg></span>
         <h3>Taste-true discovery</h3>
         <p>New artists and deep cuts chosen because they fit you, not because they're charting.</p>
       </div>
-      <div class="card">
+      <div class="tile">
+        <span class="glyph" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 3v4.5h-4.5"/><path d="M5 19.5 19.5 5"/></svg></span>
         <h3>No repeats</h3>
         <p>Packs never loop. Cued remembers what it's played you, across sessions.</p>
       </div>
-      <div class="card">
+      <div class="tile">
+        <span class="glyph" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.4 16 12l-6 3.6z" fill="currentColor" stroke="none"/></svg></span>
         <h3>Real full tracks</h3>
         <p>Plays through your own Apple&nbsp;Music — full songs, lock-screen controls, streams that count.</p>
       </div>
@@ -372,6 +556,19 @@
 
 <script>
   (function () {
+    // the 500-albums dot field: 120 dots, a small lit cluster = "the same forty songs"
+    var grid = document.getElementById("dots");
+    if (grid) {
+      var hot = { 29:1, 30:1, 31:1, 53:1, 54:1, 55:1, 56:1, 79:1 };
+      var frag = document.createDocumentFragment();
+      for (var d = 0; d < 120; d++) {
+        var b = document.createElement("b");
+        if (hot[d]) b.className = "hot";
+        frag.appendChild(b);
+      }
+      grid.appendChild(frag);
+    }
+
     var moments = [
       { word: "gym",             accent: "#c2452f" },
       { word: "morning emo run", accent: "#8e4a5e" },
