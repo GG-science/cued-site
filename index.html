@@ -19,7 +19,7 @@
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
+  html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
   body {
     margin: 0;
     background: var(--paper);
@@ -37,9 +37,13 @@
     display: flex;
     align-items: center;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     position: relative;
     padding: 64px 0;
   }
+  .slide.end { flex-direction: column; padding-bottom: 0; }
+  .slide.end .wrap { margin: auto; }
+  .slide.end footer { width: 100%; margin-top: auto; }
   .slide.alt { background: var(--paper-deep); }
   .ody {
     font-family: var(--mono);
@@ -794,7 +798,7 @@
 </section>
 
 <!-- 9 · CTA -->
-<section class="slide alt" id="s9">
+<section class="slide alt end" id="s9">
   <div class="wrap">
     <div class="ody"><span class="dot"></span> free while in beta</div>
     <h2 class="slap">Begin <em>the odyssey</em>.</h2>
@@ -806,14 +810,14 @@
     <a class="cta" href="https://testflight.apple.com/join/REPLACE_ME">Join the beta on TestFlight</a>
     <p class="fine">Cued plays music through your own Apple&nbsp;Music account and reads only the library you connect. Full details in the <a href="https://music-me-3x05.onrender.com/privacy">privacy policy</a>.</p>
   </div>
-</section>
-
 <footer>
   <div class="wrap">
     <div>© 2026 Cued Music · cuedmusic.app</div>
     <div>Built on MusicKit. Requires Apple&nbsp;Music. Not affiliated with Apple.</div>
   </div>
 </footer>
+</section>
+
 
 <script>
   (function () {
