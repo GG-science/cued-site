@@ -313,6 +313,15 @@
   }
   .th-depth { stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 5; }
 
+  /* sound-space blob */
+  .blob {
+    fill: var(--accent); fill-opacity: 0.05;
+    stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 4 6;
+    transition: stroke 1.2s ease, fill 1.2s ease;
+  }
+  .pt   { fill: var(--line); }
+  .pt-t { fill: var(--accent); transition: fill 1.2s ease; }
+
   /* the ledger */
   .ledger { font-family: var(--mono); max-width: 460px; }
   .lrow {
@@ -427,6 +436,7 @@
   <a href="#s1" aria-label="Start"></a>
   <a href="#s2" aria-label="The problem"></a>
   <a href="#s3" aria-label="Start from what you love"></a>
+  <a href="#s3b" aria-label="It learns the sound"></a>
   <a href="#s4" aria-label="The map"></a>
   <a href="#s5" aria-label="Name the moment"></a>
   <a href="#s6" aria-label="Song radio"></a>
@@ -501,10 +511,52 @@
   </div>
 </section>
 
-<!-- 4 · the map -->
-<section class="slide alt" id="s4">
+<!-- 3b · it learns the sound -->
+<section class="slide alt" id="s3b">
   <div class="wrap">
     <div class="ody"><span class="n">the odyssey · 03</span></div>
+    <h2 class="slap">A neural net listens to <em>every song</em>.</h2>
+    <p class="sub-line">Not tags. Not genres. The sound itself. Every track becomes a point in sound-space. Your taste is a shape there — and Cued serves from inside the shape, plus just past its edge.</p>
+    <div class="visual">
+      <div class="viz-card">
+        <div class="viz-label">sound-space · your taste is a shape</div>
+        <svg viewBox="0 0 560 260" style="width:100%;height:auto;display:block" role="img" aria-label="A scatter of songs in sound-space. A dashed shape encloses the songs that are your taste; one highlighted point sits just past its edge, labeled discovery.">
+          <circle class="pt" cx="60"  cy="60"  r="4"/>
+          <circle class="pt" cx="120" cy="42"  r="4"/>
+          <circle class="pt" cx="280" cy="38"  r="4"/>
+          <circle class="pt" cx="520" cy="44"  r="4"/>
+          <circle class="pt" cx="470" cy="82"  r="4"/>
+          <circle class="pt" cx="400" cy="120" r="4"/>
+          <circle class="pt" cx="360" cy="200" r="4"/>
+          <circle class="pt" cx="300" cy="224" r="4"/>
+          <circle class="pt" cx="450" cy="222" r="4"/>
+          <circle class="pt" cx="500" cy="176" r="4"/>
+          <circle class="pt" cx="90"  cy="222" r="4"/>
+          <circle class="pt" cx="52"  cy="150" r="4"/>
+          <ellipse class="blob" cx="200" cy="132" rx="122" ry="76"/>
+          <circle class="pt-t" cx="150" cy="112" r="4.5"/>
+          <circle class="pt-t" cx="192" cy="152" r="4.5"/>
+          <circle class="pt-t" cx="224" cy="102" r="4.5"/>
+          <circle class="pt-t" cx="244" cy="142" r="4.5"/>
+          <circle class="pt-t" cx="168" cy="92"  r="4.5"/>
+          <circle class="pt-t" cx="206" cy="172" r="4.5"/>
+          <circle class="pt-t" cx="130" cy="150" r="4.5"/>
+          <text class="nm" x="96" y="46">your taste</text>
+          <text class="sub" x="96" y="62">a shape in sound-space</text>
+          <line class="ed-f" x1="316" y1="148" x2="342" y2="156"/>
+          <circle class="nd-o" cx="350" cy="158" r="6"/>
+          <text class="nm-s" x="362" y="162">just past the edge · discovery</text>
+        </svg>
+        <div class="viz-foot">the audio is the judge — same words, different sound, different packs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · the map -->
+<section class="slide" id="s4">
+  <div class="wrap">
+    <div class="ody"><span class="n">the odyssey · 04</span></div>
     <h2 class="slap">One love opens <em>the whole map</em>.</h2>
     <div class="visual">
       <div class="viz-card">
@@ -586,9 +638,9 @@
 </section>
 
 <!-- 5 · name the moment -->
-<section class="slide" id="s5">
+<section class="slide alt" id="s5">
   <div class="wrap">
-    <div class="ody"><span class="n">the odyssey · 04</span></div>
+    <div class="ody"><span class="n">the odyssey · 05</span></div>
     <h2 class="slap">Name the moment. <em>It's yours.</em></h2>
     <p class="sub-line">Saved. Remembered. Sharper every time you come back.</p>
     <div class="visual">
@@ -596,7 +648,7 @@
         <div class="viz-label">your vibes · saved places</div>
         <div class="shelf">
           <div class="vibe-card">
-            <div class="vc-name">punjabi gym</div>
+            <div class="vc-name">locked in</div>
             <div class="pack" aria-hidden="true"><span style="height:15px"></span><span style="height:11px"></span><span style="height:16px"></span><span style="height:9px"></span><span style="height:13px"></span></div>
             <div class="vc-sub">48 packs · dialed in</div>
           </div>
@@ -621,40 +673,40 @@
 </section>
 
 <!-- 6 · song radio -->
-<section class="slide alt" id="s6">
+<section class="slide" id="s6">
   <div class="wrap">
-    <div class="ody"><span class="n">the odyssey · 05</span></div>
+    <div class="ody"><span class="n">the odyssey · 06</span></div>
     <h2 class="slap">Follow one song <em>into the deep</em>.</h2>
     <p class="sub-line">Radio seeded by the song. Tuned by your taste.</p>
     <div class="visual">
       <div class="viz-card">
         <div class="viz-label">song radio · following the thread</div>
         <div class="viz-scroll">
-        <svg class="thread" viewBox="0 0 560 236" role="img" aria-label="A thread descending from a seed song near the surface — past the hit you know, through an album track and a b-side — down to a song you've never met, kept.">
-          <line class="th-depth" x1="30" y1="46" x2="30" y2="210"/>
-          <text class="sub" x="16" y="36">familiar</text>
-          <text class="sub" x="16" y="228">deep cuts</text>
-          <path class="th-path" pathLength="100" d="M66 58 C120 64 130 66 170 78 C230 96 250 106 300 120 C355 136 380 146 420 160 C465 176 490 188 515 196"/>
+        <svg class="thread" viewBox="0 0 620 190" role="img" aria-label="A thread running left to right: it starts at your song, passes the hit you know, then an album track, then a b-side, and ends at a song you've never met — kept.">
+          <path class="th-path" pathLength="100" d="M50 95 C110 78 140 78 175 88 C230 104 260 108 300 96 C345 83 385 84 425 96 C475 111 515 108 550 98"/>
           <g class="s1">
-            <circle class="nd" cx="66" cy="58" r="7"/>
-            <text class="nm" x="52" y="36">▶ your song</text>
+            <circle class="nd" cx="50" cy="95" r="7"/>
+            <text class="nm" x="36" y="66">▶ your song</text>
           </g>
           <g class="s3">
-            <circle class="nd-o" cx="170" cy="78" r="5.5"/>
-            <text class="sub" x="170" y="60" text-anchor="middle">the hit you know</text>
+            <circle class="nd-o" cx="175" cy="88" r="5.5"/>
+            <text class="sub" x="175" y="125" text-anchor="middle">the hit you know</text>
           </g>
           <g class="s5">
-            <circle class="nd-o" cx="300" cy="120" r="5.5"/>
-            <text class="sub" x="300" y="102" text-anchor="middle">the album track</text>
+            <circle class="nd-o" cx="300" cy="96" r="5.5"/>
+            <text class="sub" x="300" y="66" text-anchor="middle">the album track</text>
           </g>
           <g class="s7">
-            <circle class="nd-o" cx="420" cy="160" r="5.5"/>
-            <text class="sub" x="420" y="142" text-anchor="middle">the b-side</text>
+            <circle class="nd-o" cx="425" cy="96" r="5.5"/>
+            <text class="sub" x="425" y="125" text-anchor="middle">the b-side</text>
           </g>
           <g class="s8">
-            <circle class="nd" cx="515" cy="196" r="7"/>
-            <text class="nm" x="524" y="178" text-anchor="end">never met · kept ✓</text>
+            <circle class="nd" cx="550" cy="98" r="7"/>
+            <text class="nm" x="562" y="70" text-anchor="end">never met · kept ✓</text>
           </g>
+          <line class="th-depth" x1="50" y1="158" x2="570" y2="158"/>
+          <text class="sub" x="50" y="178">start: the song you gave it</text>
+          <text class="sub" x="570" y="178" text-anchor="end">each song, deeper into your fit →</text>
         </svg>
         </div>
         <div class="viz-foot">seeded by the song · tuned by your taste</div>
@@ -664,9 +716,9 @@
 </section>
 
 <!-- 7 · no repeats -->
-<section class="slide" id="s7">
+<section class="slide alt" id="s7">
   <div class="wrap">
-    <div class="ody"><span class="n">the odyssey · 06</span></div>
+    <div class="ody"><span class="n">the odyssey · 07</span></div>
     <h2 class="slap">Never <em>the same five</em>.</h2>
     <p class="sub-line">Cued remembers every song it's played you — across packs, across days.</p>
     <div class="visual">
@@ -700,9 +752,9 @@
 </section>
 
 <!-- 8 · everything in the box -->
-<section class="slide alt" id="s8">
+<section class="slide" id="s8">
   <div class="wrap">
-    <div class="ody"><span class="n">the odyssey · 07</span></div>
+    <div class="ody"><span class="n">the odyssey · 08</span></div>
     <h2 class="slap">Everything <em>in the box</em>.</h2>
     <div class="visual">
       <div class="tiles">
@@ -742,7 +794,7 @@
 </section>
 
 <!-- 9 · CTA -->
-<section class="slide" id="s9">
+<section class="slide alt" id="s9">
   <div class="wrap">
     <div class="ody"><span class="dot"></span> free while in beta</div>
     <h2 class="slap">Begin <em>the odyssey</em>.</h2>
