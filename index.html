@@ -66,6 +66,27 @@
     text-wrap: balance;
   }
   .slap em { font-style: normal; color: var(--accent); transition: color 1.2s ease; }
+
+  /* brand splash */
+  .brand { text-align: center; width: 100%; }
+  .brand .ody { justify-content: center; }
+  .brand-word {
+    font-size: clamp(64px, 16vw, 160px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-weight: 830;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .brand-word em { font-style: normal; color: var(--accent); transition: color 1.2s ease; }
+  .brand-tag {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 26px;
+  }
   .sub-line {
     font-size: clamp(16px, 2.2vw, 19px);
     color: var(--ink-soft);
@@ -402,6 +423,7 @@
 </style>
 
 <nav class="rail" aria-label="Slides">
+  <a href="#s0" aria-label="Cued Music"></a>
   <a href="#s1" aria-label="Start"></a>
   <a href="#s2" aria-label="The problem"></a>
   <a href="#s3" aria-label="Start from what you love"></a>
@@ -413,11 +435,21 @@
   <a href="#s9" aria-label="Join the beta"></a>
 </nav>
 
+<!-- 0 · brand -->
+<section class="slide" id="s0">
+  <div class="wrap brand">
+    <div class="ody"><span class="dot"></span> private beta</div>
+    <h1 class="brand-word">Cued<br><em>Music</em></h1>
+    <div class="brand-tag">every moment · your taste</div>
+  </div>
+  <div class="cue" aria-hidden="true">↓</div>
+</section>
+
 <!-- 1 · hero -->
 <section class="slide" id="s1">
   <div class="wrap">
-    <div class="ody"><span class="dot"></span> Cued Music · private beta</div>
-    <h1 class="slap">The whole world of music, tuned to your taste — for <em id="h1-moment">every moment</em>.</h1>
+    <div class="ody"><span class="dot"></span> Cued Music</div>
+    <h2 class="slap">The whole world of music, tuned to your taste — for <em id="h1-moment">every moment</em>.</h2>
     <p class="sub-line">A music guide for Apple&nbsp;Music. Say the moment. It answers in songs.</p>
     <div class="visual">
       <div class="demo" aria-label="Example: typing a moment into Cued">
@@ -432,7 +464,6 @@
       </div>
     </div>
   </div>
-  <div class="cue" aria-hidden="true">↓</div>
 </section>
 
 <!-- 2 · the problem -->
